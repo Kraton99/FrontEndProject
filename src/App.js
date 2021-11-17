@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Header from './components/Header'
+import Nav from './components/Nav';
+import PizzaCustom from './components/PizzaCustom';
+import PizzasList from './components/PizzasList';
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Header />
+        <Nav />
+      <Switch>
+        <Route exact path='/'>
+          <Redirect to='/store' />
+        </Route>
+        <Route exact path ='/store'>
+          {<PizzasList/>}
+        </Route>
+        <Route exact path = '/pizza/:id'>
+          {<PizzaCustom />}
+        </Route>
+      </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 
