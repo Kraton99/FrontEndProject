@@ -7,7 +7,7 @@ function PizzaItem({pizza}) {
             <div>
             {pizza.name}
             </div>
-            <div>{ingredients && ingredients.filter(function(e) {
+            <div>{ingredients.filter(function(e) {
                 return this.indexOf(e.id) > 0;
             }, pizza.ingredients).map(ingredien => {
                   return  <h1 key={ingredien.id}>{ingredien.name}</h1>

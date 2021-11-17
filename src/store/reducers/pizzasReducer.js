@@ -1,5 +1,5 @@
 import {SET_PIZZAS} from "../../constraints/constraints"
-const pizzaReducer = (state = [], action) => {
+const pizzasReducer = (state = [], action) => {
     switch(action.type) {
         case SET_PIZZAS:
             const {pizzas} = action;
@@ -10,4 +10,4 @@ const pizzaReducer = (state = [], action) => {
     }
 }
 
-export default pizzaReducer;
+export default pizzasReducer;

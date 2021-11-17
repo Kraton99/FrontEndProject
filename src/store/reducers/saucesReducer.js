@@ -1,5 +1,5 @@
 import {SET_SAUCES} from "../../constraints/constraints"
-const sauceReducer = (state = [], action) => {
+const saucesReducer = (state = [], action) => {
     switch(action.type) {
         case SET_SAUCES:
             const {sauces} = action;
@@ -10,4 +10,4 @@ const sauceReducer = (state = [], action) => {
     }
 }
 
-export default sauceReducer;
+export default saucesReducer;
