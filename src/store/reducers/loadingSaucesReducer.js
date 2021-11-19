@@ -3,7 +3,6 @@ const loadingSaucesReducer = (state = true, action) => {
     switch(action.type) {
         case SET_LOADING_SAUCES:
             const {loadingSauces} = action
-            console.log(loadingSauces);
             return loadingSauces;
         default:
             return state

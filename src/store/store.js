@@ -8,6 +8,7 @@ import loadingPizzasReducer from './reducers/loadingPizzasReducer';
 import loadingIngredientsReducer from './reducers/loadingIngredientsReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import loadingSaucesReducer from './reducers/loadingSaucesReducer';
+import cartReducer from './reducers/cartReducer';
 
 const rootReducer = combineReducers( {
     pizzasReducer: pizzasReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers( {
     saucesReducer: saucesReducer,
     loadingPizzasReducer: loadingPizzasReducer,
     loadingIngredientsReducer: loadingIngredientsReducer,
-    loadingSaucesReducer: loadingSaucesReducer
+    loadingSaucesReducer: loadingSaucesReducer,
+    cartReducer: cartReducer
 });
 
 const saga = createSagaMiddleware();

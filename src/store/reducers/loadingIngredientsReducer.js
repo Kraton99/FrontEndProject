@@ -3,7 +3,6 @@ const loadingIngredientsReducer = (state = true, action) => {
     switch(action.type) {
         case SET_LOADING_INGREDIENTS:
             const {loadingIngredients} = action
-            console.log(loadingIngredients);
             return loadingIngredients;
         default:
             return state;

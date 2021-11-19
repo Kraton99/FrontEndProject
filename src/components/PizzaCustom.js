@@ -1,52 +1,42 @@
 import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
 import { bindActionCreators } from "redux";
-import {useEffect} from 'react';
-import { actionCreator } from '../store/actionCreator';
-import SaucesList from './SaucesList';
-import LoadingPage from './LoadingPage';
+import { useState} from 'react';
+import { actionCreator} from '../store/actionCreator';
+import AdditionalIngredients from './AdditionalIngredients';
+import { Link } from "react-router-dom";
 function PizzaCustom() {
     const dispacher = useDispatch();
-    const {getSauces, setLoadingSauces} = bindActionCreators(actionCreator, dispacher);
+    const {addToCart} = bindActionCreators(actionCreator, dispacher);
 
 
     const {id} = useParams();
+
     const pizza = useSelector(state => state.pizzasReducer.pizzas.find(pizza => pizza.id === id));
     const ingredients = useSelector(state => state.ingredientsReducer.ingredients);
-    const sauces = useSelector(state => state.saucesReducer.sauces);
-    const loadingSauces = useSelector(state => state.loadingSaucesReducer);
 
-    useEffect(() => {
-        setLoadingSauces(true);
-        getSauces();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
+    const [additionalIngredients, setAdditionalIngredneints] = useState([]);
+    const [money, setMoney] = useState(pizza.price);
+
+    const collectToCart = (pizza, additionalIng) => {
+        addToCart(pizza, additionalIng);
+    }
+    
     return (
         <div>
             <h1>{pizza.name}</h1>
+            <h2>Money: {money}</h2>
             <div>
                 <p>Składniki</p>
                 {ingredients.filter(function(e) {
                 return this.indexOf(e.id) > 0;
-            }, pizza.ingredients).map(ingredien => {
-                  return  <h1 key={ingredien.id}>{ingredien.name}</h1>
+            }, pizza.ingredients).map(ingredient => {
+                  return  <h1 key={ingredient.id}>{ingredient.name}</h1>
             })}</div>
-            <div><h1>Dodatkowe dodatki</h1>
-                {ingredients.map(ingredien => {
-                    return (
-                    <div key={ingredien.id}>
-                        <p>{ingredien.name}</p>
-                        <button>+</button>
-
-                        <button>-</button>
-                    </div>
-                    );
-                })}
-            </div>
-            <h2>Sosy</h2>
-            {loadingSauces ? <LoadingPage /> : <SaucesList sauces = {sauces} />}
-            <button disabled={loadingSauces}>Dodaj do koszyka</button>
+            <AdditionalIngredients setMoney={setMoney} money={money} setAdditionalIngredneints={setAdditionalIngredneints} additionalIngredients={additionalIngredients} ingredients={ingredients}/>
+            <button onClick={() => collectToCart(pizza, additionalIngredients)}>Dodaj do koszyka</button>
+            <Link to={`/cart`}><button>KOSZYK</button></Link>
         </div>
     )
 }
