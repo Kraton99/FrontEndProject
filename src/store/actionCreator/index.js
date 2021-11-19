@@ -1,7 +1,7 @@
 import { GET_INGREDIENTS, SET_INGREDIENTS, GET_PIZZAS, SET_PIZZAS, SET_SAUCES,
      GET_SAUCES, SET_LOADING_PIZZAS, GET_LOADING_PIZZAS,
       SET_LOADING_INGREDIENTS, GET_LOADING_INGREDIENTS, GET_LOADING_SAUCES, SET_LOADING_SAUCES,
-       ADD_TO_CART, REMOVE_FROM_CART, REMOVE_SAUCE_FROM_CART, ADD_SAUCE_TO_CART, INIT_CART } from "../../constraints/constraints"
+       ADD_TO_CART, REMOVE_FROM_CART, REMOVE_SAUCE_FROM_CART, ADD_SAUCE_TO_CART, INIT_CART, REMOVE_ALL_SAUCES_FROM_CART } from "../../constraints/constraints"
 export const getIngredients = () => ({
     type: GET_INGREDIENTS
 })
@@ -79,5 +79,9 @@ export const removeSauce = (sauce) => ({
 export const initCart = (cart) => ({
     type: INIT_CART,
     cart
+})
+
+export const removeAllSauces = () => ({
+    type: REMOVE_ALL_SAUCES_FROM_CART
 })
 export * as actionCreator from '.';

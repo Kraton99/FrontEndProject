@@ -3,6 +3,7 @@ export const API_SERVER = "http://localhost:3333/api";
 export const REQUEST_PIZZA = API_SERVER + "/pizza";
 export const REQUEST_INGREDIENTS = API_SERVER + "/ingredient";
 export const REQUEST_SAUCE = API_SERVER + "/sauce";
+export const POST_ORDER = API_SERVER + "/order";
 
 //REDUX ACTIONS
 export const GET_INGREDIENTS = "Get ingredients";
@@ -22,7 +23,7 @@ export const REMOVE_FROM_CART = "Remove from cart";
 export const ADD_SAUCE_TO_CART = "Add sauce to cart";
 export const REMOVE_SAUCE_FROM_CART = "Remove sauce from cart";
 export const INIT_CART = "Init cart";
-
+export const REMOVE_ALL_SAUCES_FROM_CART = "Remove all sauces from cart";
 
 //COOKIES
 export const CART_COOKIE = "cart cookie";

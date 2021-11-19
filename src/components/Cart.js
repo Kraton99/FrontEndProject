@@ -4,10 +4,15 @@ import {useState, useEffect} from 'react';
 import { actionCreator} from '../store/actionCreator';
 import SaucesList from './SaucesList';
 import LoadingPage from "./LoadingPage";
+import axios from "axios"
+import Order from "../order";
+import {CART_COOKIE, POST_ORDER} from "../constraints/constraints";
+import Cookies from "universal-cookie/es6";
 function Cart() {
     
         const dispatcher = useDispatch();
-        const {removeFromCart, getSauces, setLoadingSauces} = bindActionCreators(actionCreator, dispatcher);
+        const {removeFromCart, getSauces, setLoadingSauces, initCart} = bindActionCreators(actionCreator, dispatcher);
+        const cookies = new Cookies();
 
         const sauces = useSelector(state => state.saucesReducer.sauces);
         const loadingSauces = useSelector(state => state.loadingSaucesReducer);
@@ -16,6 +21,7 @@ function Cart() {
 
         const initPrice = () => {
             let cost = 0;
+            console.log(cartItems);
             cartItems.pizzas.forEach(item => {
                 cost += item.pizza.price;
                 item.ingredients.forEach(ingredient => {
@@ -28,7 +34,7 @@ function Cart() {
             return cost;
         }
 
-        const [money, setMoney] = useState(initPrice());
+        const [money, setMoney] = useState(0);
 
         const removePizza = (aIndex, aCost) => {
             setMoney(money - aCost);
@@ -42,6 +48,24 @@ function Cart() {
             })
             return cost;
         }
+        
+        const order = () => {
+            console.log(cartItems.pizzas, cartItems.sauces, money);
+            const order = new Order(cartItems.pizzas, cartItems.sauces, money);
+            console.log(order);
+            axios.request({
+                method: 'POST',
+                url: POST_ORDER,
+                data: order
+            }).then(response => {
+                initCart({pizzas: [], sauces: []})
+                cookies.remove(CART_COOKIE);
+                console.log(response);
+            }).catch(error => {
+                console.log(error);
+            });
+            cookies.remove(CART_COOKIE);
+        }
 
 
         useEffect(() => {
@@ -49,6 +73,11 @@ function Cart() {
             getSauces();
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
+
+        useEffect(() => {
+            setMoney(initPrice());
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [cartItems])
 
 
         
@@ -65,6 +94,7 @@ function Cart() {
                 )
             }) : <h1>Twój koszyk jest pusty</h1>}
             {loadingSauces ? <LoadingPage /> : <SaucesList sauces = {sauces} setMoney={setMoney} money={money} />}
+            <button onClick={() => order()}>Zamów</button>
         </>
     )
 }

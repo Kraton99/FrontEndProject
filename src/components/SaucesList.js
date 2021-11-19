@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from "react-redux";
 import {bindActionCreators} from 'redux';
 import { actionCreator} from '../store/actionCreator';
@@ -7,7 +7,7 @@ function SaucesList(props) {
     const dispatcher = useDispatch();
     const cartSauces = useSelector(state => state.cartReducer.sauces);
     const [saucesList, setSauces] = useState([...cartSauces]);
-    const {addSauce, removeSauce} = bindActionCreators(actionCreator, dispatcher);
+    const {addSauce, removeSauce, removeAllSauces} = bindActionCreators(actionCreator, dispatcher);
 
     const cRemoveSauce = (sauce) => {
         if(saucesList.filter(element => element.id === sauce.id).length > 0) {
@@ -26,15 +26,19 @@ function SaucesList(props) {
         addSauce(sauce);
     }
 
-    const removeAllSauces = () => {
+    const cRemoveAllSauces = () => {
         let lessMoney = 0;
         saucesList.forEach(element => {
            lessMoney += element.price;
         });
         props.setMoney(props.money - lessMoney);
         setSauces([]);
-        //clearSaucesInCart()
+        removeAllSauces();
     }
+
+    useEffect(() => {
+        setSauces([...cartSauces]);
+    }, [cartSauces])
   
     return (
         <div>
@@ -48,7 +52,7 @@ function SaucesList(props) {
                     </div>
                 );
             })}
-            <button onClick={() => removeAllSauces()}>Usuń wszystkie sosy</button>
+            <button onClick={() => cRemoveAllSauces()}>Usuń wszystkie sosy</button>
         </div>
     )
 }

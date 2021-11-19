@@ -1,4 +1,4 @@
-import { REMOVE_FROM_CART, ADD_TO_CART, ADD_SAUCE_TO_CART, REMOVE_SAUCE_FROM_CART, INIT_CART, CART_COOKIE} from "../../constraints/constraints";
+import { REMOVE_FROM_CART, ADD_TO_CART, ADD_SAUCE_TO_CART, REMOVE_SAUCE_FROM_CART, INIT_CART, CART_COOKIE, REMOVE_ALL_SAUCES_FROM_CART} from "../../constraints/constraints";
 import Cookies from "universal-cookie/es6";
 
 const cookies = new Cookies();
@@ -30,6 +30,10 @@ const cartReducer = (aState = {pizzas: [], sauces: []}, aAction) => {
         case INIT_CART:
             const {cart} = aAction;
             return cart;
+        case REMOVE_ALL_SAUCES_FROM_CART:
+            aState.sauces = [];
+            cookies.set(CART_COOKIE, aState)
+            return aState;
         default:
             return aState;
     }
