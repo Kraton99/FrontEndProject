@@ -1,12 +1,12 @@
 import {useSelector, useDispatch} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {useState, useEffect} from 'react';
-import { actionCreator} from '../store/actionCreator';
-import SaucesList from './SaucesList';
-import LoadingPage from "./LoadingPage";
+import { actionCreator} from '../../store/actionCreator';
+import SaucesList from '../SaucesList/SaucesList';
+import LoadingPage from "../LoadingPage/LoadingPage";
 import axios from "axios"
-import Order from "../order";
-import {CART_COOKIE, POST_ORDER} from "../constraints/constraints";
+import Order from "../../order";
+import {CART_COOKIE, POST_ORDER} from "../../constraints/constraints";
 import Cookies from "universal-cookie/es6";
 function Cart() {
     

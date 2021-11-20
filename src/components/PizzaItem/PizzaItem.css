@@ -1,0 +1,22 @@
+.pizzaItem {
+
+}
+
+.pizzaItem td{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: large;
+    text-align: left;
+}
+.pizzaItemName {
+    display: inline-block;
+    font-weight: bold;
+    /* width: max-content; */
+}
+
+.orderPizza {
+    margin-right: 30%;
+}
+
+.pizzaIngredients {
+    font-weight: normal;
+}

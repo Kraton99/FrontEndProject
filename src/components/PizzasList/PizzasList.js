@@ -1,17 +1,15 @@
-import PizzaItem from "./PizzaItem";
+import PizzaItem from "../PizzaItem/PizzaItem";
 import {useSelector} from "react-redux";
-
+import './PizzaList.css';
 function PizzasList() {
     const pizzas = useSelector(state => state.pizzasReducer.pizzas);
     
     return (
-        <div> 
-            <div className='pw'>
+            <table className='pizzaList'>
                 {pizzas.map(pizza => {
                 return <PizzaItem key={pizza.id} pizza = {pizza}/>
                 })}
-            </div>
-        </div>
+            </table>
     )
 }
 

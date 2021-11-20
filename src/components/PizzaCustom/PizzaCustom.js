@@ -2,8 +2,8 @@ import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
 import { bindActionCreators } from "redux";
 import { useState} from 'react';
-import { actionCreator} from '../store/actionCreator';
-import AdditionalIngredients from './AdditionalIngredients';
+import { actionCreator} from '../../store/actionCreator';
+import AdditionalIngredients from '../AdditionalIngredients/AdditionalIngredients';
 import { Link } from "react-router-dom";
 function PizzaCustom() {
     const dispacher = useDispatch();

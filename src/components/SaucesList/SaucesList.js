@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from "react-redux";
 import {bindActionCreators} from 'redux';
-import { actionCreator} from '../store/actionCreator';
+import { actionCreator} from '../../store/actionCreator';
 
 function SaucesList(props) {
     const dispatcher = useDispatch();
