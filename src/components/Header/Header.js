@@ -1,8 +1,9 @@
+import "./Header.css"
 function Header() {
     return (
-        <div>
+        <div className="header">
             <header>
-                <h1>Pizza store</h1>
+                <img src={require('../../assets/images/header.webp').default} alt="tibia"/>
             </header>
         </div>
     )

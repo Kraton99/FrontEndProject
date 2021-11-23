@@ -1,0 +1,85 @@
+.ingredientsList {
+   margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    list-style: none;
+    flex-direction: column;
+    padding: 0;
+}
+
+.ingredient {
+    font-size: 25px;
+    margin-top: 3%;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: center;
+}
+
+.itemName {
+}
+
+.itemCounter {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-around;
+    gap: 1rem;
+}
+.count {
+    text-align: center;
+    background-color: #562D40;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+
+.count:hover {
+    transform: scale(1.2)
+    
+}
+
+.deleteIngredients {
+    margin-top: 2%;
+    text-align: center;
+    background-color: #562D40;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+
+    cursor: pointer;
+    transition: 0.4s;
+    font-size: 25px;
+    width: max-content;
+}
+
+
+.deleteIngredients:hover {
+    transform: scale(1.2)
+    
+}
+
+.countValue {
+    width: 100px;
+    text-align: center;
+}

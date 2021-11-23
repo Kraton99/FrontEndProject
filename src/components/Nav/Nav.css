@@ -1,0 +1,35 @@
+nav {
+    width: 100%;
+}
+.navList {
+    margin-top: 3%;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    justify-content: space-around;
+    font-size: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navItem {
+    transition: 0.4s;
+    text-decoration: none;
+    background-color: #B53832;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 2%;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+}
+
+.navItem:hover {
+    transform: rotateX(50deg) scale(1.2);
+    box-shadow: 0px 50px 10px 10px #562D40;
+}

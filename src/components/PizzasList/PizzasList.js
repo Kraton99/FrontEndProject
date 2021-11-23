@@ -5,11 +5,11 @@ function PizzasList() {
     const pizzas = useSelector(state => state.pizzasReducer.pizzas);
     
     return (
-            <table className='pizzaList'>
+            <ul className='pizzaList'>
                 {pizzas.map(pizza => {
                 return <PizzaItem key={pizza.id} pizza = {pizza}/>
                 })}
-            </table>
+            </ul>
     )
 }
 

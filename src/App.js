@@ -2,6 +2,7 @@ import Header from './components/Header/Header'
 import Nav from './components/Nav/Nav';
 import PizzaCustom from './components/PizzaCustom/PizzaCustom';
 import PizzasList from './components/PizzasList/PizzasList';
+import About from "./components/About/About"
 import Cart from "./components/Cart/Cart";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import { actionCreator } from "./store/actionCreator";
@@ -52,7 +53,7 @@ function App() {
           <Cart />
         </Route>
         <Route  exact path='/about'>
-          
+          <About />
         </Route>
       </Switch>
     </div>

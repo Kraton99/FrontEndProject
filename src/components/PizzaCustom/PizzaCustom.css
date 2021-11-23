@@ -1,0 +1,36 @@
+.custom {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.pizza {
+    display: inline-flex;
+    justify-content: space-between;
+    margin-top: 3%;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    min-width: 60%;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+    
+}
+
+.pizzaIngredients {
+    font-weight: normal;
+}
+
+.price {
+    font-size: 25px;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+}

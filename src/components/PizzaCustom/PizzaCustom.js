@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { useState} from 'react';
 import { actionCreator} from '../../store/actionCreator';
 import AdditionalIngredients from '../AdditionalIngredients/AdditionalIngredients';
-import { Link } from "react-router-dom";
+import "./PizzaCustom.css"
 function PizzaCustom() {
     const dispacher = useDispatch();
     const {addToCart} = bindActionCreators(actionCreator, dispacher);
@@ -20,23 +20,25 @@ function PizzaCustom() {
     const [money, setMoney] = useState(pizza.price);
 
     const collectToCart = (pizza, additionalIng) => {
+        window.alert("CHUJ CI NA PIZDE");
         addToCart(pizza, additionalIng);
     }
     
     return (
-        <div>
-            <h1>{pizza.name}</h1>
-            <h2>Money: {money}</h2>
-            <div>
-                <p>Składniki</p>
-                {ingredients.filter(function(e) {
-                return this.indexOf(e.id) > 0;
-            }, pizza.ingredients).map(ingredient => {
-                  return  <h1 key={ingredient.id}>{ingredient.name}</h1>
-            })}</div>
+        <div className="custom">
+            <div className="pizza">
+                    <div>
+                    {pizza.name}
+                    {ingredients.filter(function(e) {
+                        return this.indexOf(e.id) > 0;
+                    }, pizza.ingredients).map(ingredient => {
+                        return  <span className="pizzaIngredients" key={ingredient.id}> {ingredient.name} </span>
+                    })}
+                </div>
+                <span className="price">Cena: {money}</span>
+                <button className="orderPizza" onClick={() => collectToCart(pizza, additionalIngredients)}>Dodaj do koszyka</button>
+            </div>
             <AdditionalIngredients setMoney={setMoney} money={money} setAdditionalIngredneints={setAdditionalIngredneints} additionalIngredients={additionalIngredients} ingredients={ingredients}/>
-            <button onClick={() => collectToCart(pizza, additionalIngredients)}>Dodaj do koszyka</button>
-            <Link to={`/cart`}><button>KOSZYK</button></Link>
         </div>
     )
 }

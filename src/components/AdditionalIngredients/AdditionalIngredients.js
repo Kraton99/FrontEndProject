@@ -1,3 +1,4 @@
+import "./AdditionalIngredients.css"
 function AdditionalIngredients(props) {
     
     const ingredients = props.ingredients;
@@ -26,19 +27,23 @@ function AdditionalIngredients(props) {
     }
 
     return (
-        <div>
-    {ingredients.map(ingredient => {
-        return (
-        <div key={ingredient.id}>
-            <p>{ingredient.name} {ingredient.price}</p>
-            <button onClick={() => addIngredient(ingredient)}>+</button>
-            <p>Ilość: {props.additionalIngredients.filter(additionalIngredient => additionalIngredient.id === ingredient.id).length}</p>
-            <button onClick={() => removeIngredient(ingredient)}>-</button>
-        </div>
-        );
-    })}
-    <button onClick={() => removeAllIngredients()}>Usuń wszystkie dodatkowe składniki</button>
-    </div>
+        <>
+            <button class="deleteIngredients"onClick={() => removeAllIngredients()}><span className="buttonText">Usuń wszystkie dodatkowe składniki</span></button>
+            <ul className="ingredientsList">
+        {ingredients.map(ingredient => {
+            return (
+            <li className="ingredient" key={ingredient.id}>
+                <div className="itemName">{ingredient.name}: {ingredient.price} zł</div>
+                <div className="itemCounter">
+                    <button className="count" onClick={() => addIngredient(ingredient)}>+</button>
+                    <p className="countValue">Ilość: {props.additionalIngredients.filter(additionalIngredient => additionalIngredient.id === ingredient.id).length}</p>
+                    <button className="count" onClick={() => removeIngredient(ingredient)}>-</button>
+                </div>
+            </li>
+            );
+        })}
+        </ul>
+    </>
 )}
 
 export default AdditionalIngredients
