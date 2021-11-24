@@ -20,7 +20,7 @@ function PizzaCustom() {
     const [money, setMoney] = useState(pizza.price);
 
     const collectToCart = (pizza, additionalIng) => {
-        window.alert("CHUJ CI NA PIZDE");
+        window.alert(pizza.name + " dodana do koszyka.");
         addToCart(pizza, additionalIng);
     }
     

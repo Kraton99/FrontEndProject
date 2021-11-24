@@ -2,7 +2,8 @@ import {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from "react-redux";
 import {bindActionCreators} from 'redux';
 import { actionCreator} from '../../store/actionCreator';
-
+import "./Sauces.css"
+import "../AdditionalIngredients/AdditionalIngredients.css"
 function SaucesList(props) {
     const dispatcher = useDispatch();
     const cartSauces = useSelector(state => state.cartReducer.sauces);
@@ -41,19 +42,23 @@ function SaucesList(props) {
     }, [cartSauces])
   
     return (
-        <div>
+        <>
+            <button className="deleteSauces"onClick={() => cRemoveAllSauces()}>Usuń wszystkie sosy</button>
+        <ul className="saucesList">
             {props.sauces.map(sauce => {
                 return (
-                    <div key={sauce.id}>
-                        <p>{sauce.name} {sauce.price}</p>
-                        <button onClick={() => cAddSauce(sauce)}>+</button>
-                        <p>{saucesList.filter(element => element.id === sauce.id).length}</p>
-                        <button onClick={() => cRemoveSauce(sauce)}>-</button>
-                    </div>
+                    <li className="sauce" key={sauce.id}>
+                        <div className="itemName">{sauce.name}: {sauce.price} zł</div>
+                            <div className="itemCounter">
+                                <button className="count"onClick={() => cAddSauce(sauce)}>+</button>
+                                <p className="countValue">{saucesList.filter(element => element.id === sauce.id).length}</p>
+                                <button className="count"onClick={() => cRemoveSauce(sauce)}>-</button>
+                            </div>
+                    </li>
                 );
             })}
-            <button onClick={() => cRemoveAllSauces()}>Usuń wszystkie sosy</button>
-        </div>
+        </ul>
+        </>
     )
 }
 

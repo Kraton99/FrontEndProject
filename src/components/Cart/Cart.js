@@ -1,13 +1,15 @@
 import {useSelector, useDispatch} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {useState, useEffect} from 'react';
-import { actionCreator} from '../../store/actionCreator';
+import { actionCreator, setLoadingPizzas} from '../../store/actionCreator';
 import SaucesList from '../SaucesList/SaucesList';
 import LoadingPage from "../LoadingPage/LoadingPage";
 import axios from "axios"
 import Order from "../../order";
 import {CART_COOKIE, POST_ORDER} from "../../constraints/constraints";
 import Cookies from "universal-cookie/es6";
+import "./Cart.css";
+import { useHistory } from "react-router-dom";
 function Cart() {
     
         const dispatcher = useDispatch();
@@ -17,6 +19,9 @@ function Cart() {
         const sauces = useSelector(state => state.saucesReducer.sauces);
         const loadingSauces = useSelector(state => state.loadingSaucesReducer);
         const cartItems = useSelector(state => state.cartReducer);
+        const history = useHistory();
+        const [loading, setLoading] = useState(false);
+
     
 
         const initPrice = () => {
@@ -50,6 +55,7 @@ function Cart() {
         }
         
         const order = () => {
+            setLoading(true);
             console.log(cartItems.pizzas, cartItems.sauces, money);
             const order = new Order(cartItems.pizzas, cartItems.sauces, money);
             console.log(order);
@@ -58,11 +64,15 @@ function Cart() {
                 url: POST_ORDER,
                 data: order
             }).then(response => {
+                // should be dispatch to some REMOVE FROM CART action or smh TBH but i'm to lazy :)
                 initCart({pizzas: [], sauces: []})
                 cookies.remove(CART_COOKIE);
-                console.log(response);
+                history.push("/store");
+                window.alert("Zamówienie zostało złożone");
+                setLoading(false);
             }).catch(error => {
                 console.log(error);
+                window.alert("Nie udało złozyć się zamówienia");
             });
             cookies.remove(CART_COOKIE);
         }
@@ -82,19 +92,22 @@ function Cart() {
 
         
     return (
+    
         <>
-            <h1>Koszyk Cena: {money}</h1>
-            { 
-            cartItems.pizzas.length > 0 ? cartItems.pizzas.map((item, index) => {
-                return (
-                    <div key={index}>
-                        <div >{item.pizza.name}</div>
-                        <button onClick={() => removePizza(index, calculateCost(item))}>delete</button>
-                    </div>
-                )
-            }) : <h1>Twój koszyk jest pusty</h1>}
-            {loadingSauces ? <LoadingPage /> : <SaucesList sauces = {sauces} setMoney={setMoney} money={money} />}
-            <button onClick={() => order()}>Zamów</button>
+        {loading ? <LoadingPage /> : <div className="cart">
+                <h1 className="cartPrice">Koszyk Cena: {money} zł</h1>
+                <button className={!cartItems.pizzas.length > 0 || loadingSauces ? "disabledButton" : "orderButton" } disabled={!cartItems.pizzas.length > 0 || loadingSauces} onClick={() => order()}>Zamów</button>
+                { 
+                cartItems.pizzas.length > 0 ? cartItems.pizzas.map((item, index) => {
+                    return (
+                        <div className="order" key={index}>
+                            <div >{item.pizza.name}</div>
+                            <button className="deleteButton" onClick={() => removePizza(index, calculateCost(item))}>delete</button>
+                        </div>
+                    )
+                }) : <h1 className="empty">Twój koszyk jest pusty</h1>}
+                {loadingSauces ? <LoadingPage /> : <SaucesList sauces = {sauces} setMoney={setMoney} money={money} />}
+            </div>}
         </>
     )
 }

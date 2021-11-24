@@ -28,7 +28,7 @@ function AdditionalIngredients(props) {
 
     return (
         <>
-            <button class="deleteIngredients"onClick={() => removeAllIngredients()}><span className="buttonText">Usuń wszystkie dodatkowe składniki</span></button>
+            <button className="deleteIngredients"onClick={() => removeAllIngredients()}><span className="buttonText">Usuń wszystkie dodatkowe składniki</span></button>
             <ul className="ingredientsList">
         {ingredients.map(ingredient => {
             return (

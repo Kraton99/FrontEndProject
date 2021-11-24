@@ -1,0 +1,53 @@
+.saucesList {
+    margin-top: 3%;
+     margin-left: auto;
+     margin-right: auto;
+     list-style: none;
+     flex-direction: column;
+     padding: 0;
+ }
+ 
+ .sauce {
+    font-size: 25px;
+    margin-top: 3%;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+    justify-content: space-between;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.cart {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deleteSauces {
+    margin-top: 2%;
+    text-align: center;
+    background-color: #562D40;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: white;
+    text-shadow:
+        0.07em 0 #562D40,
+        0 0.07em #562D40,
+        -0.07em 0 #562D40,
+        0 -0.07em #562D40;
+
+    cursor: pointer;
+    transition: 0.4s;
+    font-size: 25px;
+    width: max-content;
+}
+
+.deleteSauces:hover {
+    transform: scale(1.2);
+}
